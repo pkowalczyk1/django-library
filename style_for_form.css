@@ -1,0 +1,20 @@
+label {
+    font-weight: bold;
+}
+
+.important {
+    color: blue;
+}
+
+.reset {
+    background-color: red;
+}
+
+.submit {
+    background-color: green;
+}
+
+.block {
+    background-color: gray;
+    width: max-content;
+}
