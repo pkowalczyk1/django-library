@@ -2,18 +2,49 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>My test page</title>
-        <link type="text/css" rel="stylesheet" href="style_for_index.css">
+        <title>Biblioteka</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     </head>
     <body>
-        <h1 class="important">This is some example page</h1>
-        <p>My cat is very grumpy</p>
-        <a href="https://www.google.com/"><img src="C:\Users\piotr\Desktop\Informatyka- studia\Prymus-projekt-biblioteka\koty.jpg" title="A pretty cat"></a>
-        <p class="head">Other animals I like:</p>
-        <ul>
-            <li class="animals">Dogs</li>
-            <li class="animals">Hedgehogs</li>
-            <li class="animals">Foxes</li>
-        </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="disc.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Biblioteka muzyki
+                </a>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Strona główna</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Dodaj piosenkę</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">O autorze</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Zaloguj się</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Szukaj" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Szukaj</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+                <img src="disc.svg" width="80" height="80" class="d-inline-block align-top" alt="">
+                <h1 class="display-4 fst-italic">Witaj w bibliotece muzycznej!</h1>
+                <p class="lead my-3">Możesz tu podzielić się z innymi swoją ulubioną muzyką i zobaczyć, czego lubią słuchać inni.</p>
+            </div>
+        </div>
     </body>
 </html>
