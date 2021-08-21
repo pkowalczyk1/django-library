@@ -13,7 +13,8 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <img src="disc.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    {% load static %}
+                    <img src="{% static 'music/disc.svg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
                     Biblioteka muzyki
                 </a>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -41,7 +42,8 @@
 
         <div class="p-5 mb-4 bg-dark text-white rounded-3" style="background-image: url('https://www.orange.nsw.gov.au/wp-content/uploads/2021/02/MFLE-image-2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat">
             <div class="container-fluid py-5">
-                <img src="disc.svg" width="100" height="100" class="d-inline-block align-top" alt="">
+                {% load static %}
+                <img src="{% static 'music/disc.svg' %}" width="100" height="100" class="d-inline-block align-top" alt="">
                 <h1 class="display-5 fw-bold">Witaj w bibliotece muzycznej!</h1>
                 <p class="col-md-8 fs-4">Możesz tu podzielić się z innymi, czego słuchasz i dowiedzieć się, czego słuchają użytkownicy.</p>
             </div>
