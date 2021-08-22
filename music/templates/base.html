@@ -1,9 +1,48 @@
 <!DOCTYPE html>
 <html lang="pl">
     <head>
-        <meta charset="UTF-8">
-        <title>Moja biblioteka</title>
+        <meta charset="utf-8">
+        <title>Biblioteka</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    {% load static %}
+                    <img src="{% static 'music/music-note.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Biblioteka muzyki
+                </a>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Strona główna</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Dodaj piosenkę</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">O autorze</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Zaloguj się</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Szukaj" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Szukaj</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        {% block content %}
+
+        {% endblock %}
+
     </body>
 </html>

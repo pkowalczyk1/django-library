@@ -20,4 +20,5 @@ from music import views
 urlpatterns = [
     path('', views.main_page, name='home'),
     path('admin/', admin.site.urls),
+    path('list/', views.songs_list, name='list'),
 ]

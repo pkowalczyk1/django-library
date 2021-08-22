@@ -1,76 +1,35 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Biblioteka</title>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" href="{% url 'home' %}">
-                    {% load static %}
-                    <img src="{% static 'music/music-note.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Biblioteka muzyki
-                </a>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Strona główna</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Dodaj piosenkę</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">O autorze</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Zaloguj się</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Szukaj" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Szukaj</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
+{% extends "base.html" %}
+{% block content %}
+    <div class="p-5 mb-4 bg-dark text-white rounded-3" style="background-image: url('https://www.orange.nsw.gov.au/wp-content/uploads/2021/02/MFLE-image-2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat">
+        <div class="container-fluid py-5">
+            {% load static %}
+            <img src="{% static 'music/music-note.png' %}" width="100" height="100" class="d-inline-block align-top" alt="">
+            <h1 class="display-5 fw-bold">Witaj w bibliotece muzycznej!</h1>
+            <p class="col-md-8 fs-4">Możesz tu podzielić się z innymi, czego słuchasz i dowiedzieć się, czego słuchają użytkownicy.</p>
+        </div>
+    </div>
 
-        <div class="p-5 mb-4 bg-dark text-white rounded-3" style="background-image: url('https://www.orange.nsw.gov.au/wp-content/uploads/2021/02/MFLE-image-2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat">
-            <div class="container-fluid py-5">
-                {% load static %}
-                <img src="{% static 'music/music-note.png' %}" width="100" height="100" class="d-inline-block align-top" alt="">
-                <h1 class="display-5 fw-bold">Witaj w bibliotece muzycznej!</h1>
-                <p class="col-md-8 fs-4">Możesz tu podzielić się z innymi, czego słuchasz i dowiedzieć się, czego słuchają użytkownicy.</p>
+    <div class="card-group" style="width: 90%; position: fixed; left: 50%; transform: translate(-50%, 0%)">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Piosenki</h5>
+                <p class="card-text">Tu możesz zobaczyć, jakie piosenki masz w swojej bibliotece, a także przejrzeć bibliotekę innych użytkowników strony.</p>
+                <a class="btn btn-primary" href="#" role="button">Więcej</a>
             </div>
         </div>
-
-        <div class="card-group" style="width: 90%; position: fixed; left: 50%; transform: translate(-50%, 0%)">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Piosenki</h5>
-                    <p class="card-text">Tu możesz zobaczyć, jakie piosenki masz w swojej bibliotece, a także przejrzeć bibliotekę innych użytkowników strony.</p>
-                    <a class="btn btn-primary" href="#" role="button">Więcej</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Wykonawcy</h5>
-                    <p class="card-text">Tu możesz przejrzeć wykonawców, których piosenki umieszczają w swoich bibliotekach użytkownicy.</p>
-                    <a class="btn btn-primary" href="#" role="button">Więcej</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Recenzje</h5>
-                    <p class="card-text">Jeśli chcesz podzielić się swoimi odczuciami o jakiejś piosence, bądź dowiedzieć się, co myślą inni o jakimś utworze, zajrzyj tutaj.</p>
-                    <a class="btn btn-primary" href="#" role="button">Więcej</a>
-                </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Wykonawcy</h5>
+                <p class="card-text">Tu możesz przejrzeć wykonawców, których piosenki umieszczają w swoich bibliotekach użytkownicy.</p>
+                <a class="btn btn-primary" href="#" role="button">Więcej</a>
             </div>
         </div>
-    </body>
-</html>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Recenzje</h5>
+                <p class="card-text">Jeśli chcesz podzielić się swoimi odczuciami o jakiejś piosence, bądź dowiedzieć się, co myślą inni o jakimś utworze, zajrzyj tutaj.</p>
+                <a class="btn btn-primary" href="#" role="button">Więcej</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
