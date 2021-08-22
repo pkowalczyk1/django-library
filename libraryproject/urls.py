@@ -18,7 +18,6 @@ from django.urls import path
 from music import views
 
 urlpatterns = [
+    path('', views.main_page, name='home'),
     path('admin/', admin.site.urls),
-    path('hello/', views.hello_world),
-    path('main/', views.main_page),
 ]
