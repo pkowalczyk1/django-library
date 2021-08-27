@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Witaj {{ user }}</h1>
+    <br>
+    <a class="btn btn-primary" href="{% url 'home' %}" role="button">Strona Główna</a>
+{% endblock %}
