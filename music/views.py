@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from music.models import Song
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -28,3 +29,8 @@ def user_signup(request):
         form = UserCreationForm()
     
     return render(request, template_name='registration/signup.html', context={'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, template_name='index.html')
