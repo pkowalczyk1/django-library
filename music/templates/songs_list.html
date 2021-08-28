@@ -8,7 +8,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">{{song.title}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{song.author}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h6>
                         <p class="card-text">{{song.short_description}}</p>
                         {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-primary">Tekst</a> {% endifnotequal %}
                     </div>

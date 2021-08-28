@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from music.models import Song
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from music.forms import SongForm
+from django.views.generic import CreateView
 
 # Create your views here.
 
@@ -34,3 +37,9 @@ def user_signup(request):
 def logout_view(request):
     logout(request)
     return render(request, template_name='index.html')
+
+
+class SongCreate(LoginRequiredMixin, CreateView):
+    form_class = SongForm
+    template_name = 'song_create.html'
+    success_url = '/list/'
