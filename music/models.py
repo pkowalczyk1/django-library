@@ -2,11 +2,11 @@ from django.db import models
 
 # Create your models here.
 class Song(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, verbose_name='tytuł')
     musician = models.ManyToManyField(to='music.Musician', verbose_name='wykonawcy', related_name='music')
-    short_description = models.TextField()
-    published_at = models.DateField()
-    text_link = models.CharField(max_length=150, default='No link')
+    short_description = models.TextField(verbose_name='opis')
+    published_at = models.DateField(verbose_name='data publikacji (rrrr-mm-dd)')
+    text_link = models.CharField(max_length=150, default='No link', verbose_name='link do tekstu')
 
     def __str__(self):
         return 'Piosenka: ' + self.title
@@ -14,8 +14,8 @@ class Song(models.Model):
 
 class Musician(models.Model):
     name = models.CharField(max_length=100)
-    about = models.TextField()
-    photo = models.ImageField()
+    about = models.TextField(verbose_name='opis')
+    photo = models.ImageField(verbose_name='zdjęcie')
 
     class Meta:
         verbose_name = 'wykonawca'

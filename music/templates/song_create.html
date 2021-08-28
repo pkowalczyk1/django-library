@@ -1,9 +1,32 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
+
 {% block content %}
-    <h1>Dodawanie nowej piosenki</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Wyślij</button>
-    </form>
+    <br>
+    <div class="text-center">
+        <h1 class="h3 mb-3 fw-normal">Dodawanie nowej piosenki</h1>
+        <main class="form-signin" style="max-width: 50%; margin:auto">
+            <form method="post">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{hidden}}
+                {% endfor %}
+
+                {% for field in form.visible_fields %}
+                    {% ifnotequal field|field_type 'modelmultiplechoicefield' %}
+                        <div class="form-group mb-3">
+                            <label for="{{ field.id_for_label }}" style="font-weight: bold">{{ field.label }}</label>
+                            {% render_field field class="form-control" %}
+                        </div>
+                    {% else %}
+                        <div class="form-group mb-3">
+                            <label for="{{ field.id_for_label }}" style="font-weight: bold">{{ field.label }}</label>
+                            {% render_field field class="form-select" %}
+                        </div>
+                    {% endifnotequal %}
+                {% endfor %}
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Zapisz</button>
+            </form>
+        </main>
+    </div>
 {% endblock %}
