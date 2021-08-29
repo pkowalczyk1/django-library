@@ -13,17 +13,13 @@
                 {% endfor %}
 
                 {% for field in form.visible_fields %}
-                    {% ifnotequal field|field_type 'modelmultiplechoicefield' %}
-                        <div class="form-group mb-3">
-                            <label for="{{ field.id_for_label }}" style="font-weight: bold">{{ field.label }}</label>
-                            {% render_field field class="form-control" %}
-                        </div>
-                    {% else %}
-                        <div class="form-group mb-3">
-                            <label for="{{ field.id_for_label }}" style="font-weight: bold">{{ field.label }}</label>
-                            {% render_field field class="form-select" %}
-                        </div>
-                    {% endifnotequal %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% ifequal field.id_for_label 'id_musician' %}
+                            <button class="btn btn-outline-secondary" type="button">Dodaj wykonawcę</button>
+                        {% endifequal %}
+                    </div>
                 {% endfor %}
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Zapisz</button>
             </form>
