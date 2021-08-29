@@ -1,5 +1,5 @@
 from django import forms
-from music.models import Song
+from music.models import Song, Musician
 
 class SongForm(forms.ModelForm):
     class Meta:
@@ -11,4 +11,15 @@ class SongForm(forms.ModelForm):
             'short_description': forms.Textarea(attrs={'class': 'form-control'}),
             'published_at': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'text_link': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class MusicianForm(forms.ModelForm):
+    class Meta:
+        model = Musician
+        fields = ('name', 'about', 'photo')
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'about': forms.Textarea(attrs={'class': 'form-control'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control', 'type': 'file'}),
         }

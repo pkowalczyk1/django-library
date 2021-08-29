@@ -13,7 +13,7 @@ class Song(models.Model):
 
 
 class Musician(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, verbose_name='nazwa')
     about = models.TextField(verbose_name='opis', blank=True)
     photo = models.ImageField(verbose_name='zdjęcie', blank=True)
 

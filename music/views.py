@@ -4,7 +4,7 @@ from music.models import Song
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from music.forms import SongForm
+from music.forms import SongForm, MusicianForm
 from django.views.generic import CreateView
 
 # Create your views here.
@@ -43,3 +43,9 @@ class SongCreate(LoginRequiredMixin, CreateView):
     form_class = SongForm
     template_name = 'song_create.html'
     success_url = '/list/'
+
+
+class MusicianCreate(LoginRequiredMixin, CreateView):
+    form_class = MusicianForm
+    template_name = 'musician_create.html'
+    success_url = '/'

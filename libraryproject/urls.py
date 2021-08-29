@@ -25,5 +25,6 @@ urlpatterns = [
     path('', views.main_page, name='home'),
     path('admin/', admin.site.urls),
     path('list/', views.songs_list, name='list'),
-    path('songs/new', views.SongCreate.as_view(), name='song_create')
+    path('songs/new', views.SongCreate.as_view(), name='song_create'),
+    path('musician/new', views.MusicianCreate.as_view(), name='musician_create'),
 ]
