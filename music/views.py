@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from music.models import Song
+from music.models import Song, Musician
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from music.forms import SongForm, MusicianForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 # Create your views here.
 
@@ -49,3 +49,8 @@ class MusicianCreate(LoginRequiredMixin, CreateView):
     form_class = MusicianForm
     template_name = 'musician_create.html'
     success_url = '/'
+
+
+class MusicianList(ListView):
+    model = Musician
+    template_name = 'musician_list.html'

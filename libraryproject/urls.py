@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from music import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls'), name='login'),
@@ -24,7 +26,8 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('', views.main_page, name='home'),
     path('admin/', admin.site.urls),
-    path('list/', views.songs_list, name='list'),
+    path('song_list/', views.songs_list, name='list'),
     path('songs/new', views.SongCreate.as_view(), name='song_create'),
     path('musician/new', views.MusicianCreate.as_view(), name='musician_create'),
-]
+    path('musician_list/', views.MusicianList.as_view(), name='musician_list'),
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
