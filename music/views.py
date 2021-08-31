@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from music.forms import SongForm, MusicianForm
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 from django import http
 
 # Create your views here.
@@ -60,3 +60,14 @@ class MusicianCreate(LoginRequiredMixin, CreateView):
 class MusicianList(ListView):
     model = Musician
     template_name = 'musician_list.html'
+
+
+class MusicianDetail(DetailView):
+    model = Musician
+    context_object_name = 'musician'
+    template_name = 'musician_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['songs'] = Song.objects.filter(musician__id=self.kwargs['pk'])
+        return context

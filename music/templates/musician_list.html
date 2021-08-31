@@ -9,10 +9,10 @@
         {% for musician in musician_list %}
             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
                 <div class="card h-100">
-                    <img src="/media/{{ musician.photo }}" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">{{ musician.name }}</h5>
                         <p class="card-text">{{ musician.about }}</p>
+                        <a href="{{musician.get_absolute_url}}" target="_blank" class="btn btn-primary">Piosenki wykonawcy</a>
                     </div>
                 </div>
             </div>
