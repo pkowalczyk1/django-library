@@ -3,9 +3,9 @@ from django.http import HttpResponse
 from music.models import Song, Musician
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from music.forms import SongForm, MusicianForm
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django import http
 
 # Create your views here.
@@ -43,7 +43,7 @@ def logout_view(request):
 class SongCreate(LoginRequiredMixin, CreateView):
     form_class = SongForm
     template_name = 'song_create.html'
-    success_url = '/song_list/'
+    success_url = '/song_list'
     
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -81,3 +81,13 @@ class UserSongList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         qs = super().get_queryset()
         return qs.filter(added_by=self.request.user)
+
+
+class SongUpdateView(LoginRequiredMixin, UpdateView):
+    model = Song
+    form_class = SongForm
+    context_object_name = 'songs'
+    template_name = 'song_update.html'
+    success_url = '/user_songs'
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).filter(added_by=self.request.user)
