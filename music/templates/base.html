@@ -30,7 +30,7 @@
                             <a class="nav-link" href="{% url 'musician_create' %}">Dodaj wykonawcę</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">O autorze</a>
+                            <a class="nav-link" href="{% url 'user_songs' %}">Twoje piosenki</a>
                         </li>
                         <li class="nav-item">
                             {% if user.is_authenticated%}

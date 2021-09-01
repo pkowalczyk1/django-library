@@ -30,5 +30,6 @@ urlpatterns = [
     path('songs/new', views.SongCreate.as_view(), name='song_create'),
     path('musician/new', views.MusicianCreate.as_view(), name='musician_create'),
     path('musician_list/', views.MusicianList.as_view(), name='musician_list'),
-    path('musician/<int:pk>', views.MusicianDetail. as_view(), name='musician_detail'),
+    path('musician/<int:pk>', views.MusicianDetail.as_view(), name='musician_detail'),
+    path('user_songs', views.UserSongList.as_view(), name='user_songs'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

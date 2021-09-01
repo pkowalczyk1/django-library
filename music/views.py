@@ -71,3 +71,13 @@ class MusicianDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['songs'] = Song.objects.filter(musician__id=self.kwargs['pk'])
         return context
+
+
+class UserSongList(LoginRequiredMixin, ListView):
+    model = Song
+    context_object_name = 'songs'
+    template_name = 'user_songs.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(added_by=self.request.user)

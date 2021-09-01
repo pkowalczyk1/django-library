@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <div class="text-center">
+        <h1 class="h3 mb-3 fw-normal">Twoja lista piosenek</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+        {% for song in songs %}
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{song.title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h6>
+                        <p class="card-text">{{song.short_description}}</p>
+                        {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-primary">Tekst</a> {% endifnotequal %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
