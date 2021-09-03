@@ -33,4 +33,5 @@ urlpatterns = [
     path('musician/<int:pk>', views.MusicianDetail.as_view(), name='musician_detail'),
     path('user_songs', views.UserSongList.as_view(), name='user_songs'),
     path('update/<int:pk>', views.SongUpdateView.as_view(), name='song_update'),
+    path('delete/<int:pk>', views.SongDeleteView.as_view(), name='song_delete'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

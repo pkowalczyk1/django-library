@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from music.forms import SongForm, MusicianForm
-from django.views.generic import CreateView, ListView, DetailView, UpdateView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django import http
 
 # Create your views here.
@@ -89,5 +89,15 @@ class SongUpdateView(LoginRequiredMixin, UpdateView):
     context_object_name = 'songs'
     template_name = 'song_update.html'
     success_url = '/user_songs'
+
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).filter(added_by=self.request.user)
+
+
+class SongDeleteView(LoginRequiredMixin, DeleteView):
+    model = Song
+    template_name = 'song_confirm_delete.html'
+    success_url = '/user_songs'
+
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(added_by=self.request.user)
