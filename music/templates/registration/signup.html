@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <hr>
-        <button class="btn btn-primary">Zarejestruj się</button>
-    </form>
+    <br>
+    <div class="text-center">
+        <h1 class="h3 mb-3 fw-normal">Zarejestruj się</h1>
+        <main class="form-signin" style="max-width: 50%; margin:auto">
+            <form method='post'>
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{hidden}}
+                {% endfor %}
+
+                {% for field in form.visible_fields %}
+                    <div class='mb-3'>
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {{field.help_text}}
+                    </div>
+                {% endfor %}
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Zarejestruj</button>
+            </form>
+        </main>
+    </div>
 {% endblock %}

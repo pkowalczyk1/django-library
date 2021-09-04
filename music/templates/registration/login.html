@@ -23,11 +23,11 @@
                 {% csrf_token %}
                 <div class="form-floating">
                     <input id="floatingInput" name="username" type="text" class="form-control" placeholder="Username">
-                    <label for="floatingInput">Username</label>
+                    <label for="floatingInput">Nazwa użytkownika</label>
                 </div>
                 <div class="form-floating">
                     <input id="floatingPassword" name="password" type="password" class="form-control" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+                    <label for="floatingPassword">Hasło</label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Zaloguj się</button>
                 <input type="hidden" name="next" value="{{ next }}">
