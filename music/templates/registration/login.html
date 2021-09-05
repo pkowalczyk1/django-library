@@ -6,15 +6,14 @@
         <h1 class="h3 mb-3 fw-normal">Zaloguj się</h1>
 
         {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
+        <p>Zła nazwa użytkownika lub hasło.</p>
         {% endif %}
 
         {% if next %}
             {% if user.is_authenticated %}
-            <p>Your account doesn't have access to this page. To proceed,
-            please login with an account that has access.</p>
+            <p>Nie masz dostępu do tej strony. Aby przejść dalej, zaloguj się na konto, które ma dostęp.</p>
             {% else %}
-            <p>Please login to see this page.</p>
+            <p>Zaloguj się, aby zobaczyć tę stronę.</p>
             {% endif %}
         {% endif %}
 

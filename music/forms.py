@@ -28,9 +28,9 @@ class MusicianForm(forms.ModelForm):
 
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    first_name = forms.CharField(max_length=120, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(max_length=120, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), label='Email')
+    first_name = forms.CharField(max_length=120, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), label='Imię')
+    last_name = forms.CharField(max_length=120, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), label='Nazwisko')
 
     class Meta:
         model = User
@@ -43,3 +43,6 @@ class SignUpForm(UserCreationForm):
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].label = 'Nazwa użytkownika'
+        self.fields['password1'].label = 'Hasło'
+        self.fields['password2'].label = 'Potwierdź hasło'
