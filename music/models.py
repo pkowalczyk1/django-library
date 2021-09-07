@@ -10,10 +10,14 @@ class Song(models.Model):
     published_at = models.DateField(verbose_name='data publikacji', blank=True, null=True)
     text_link = models.CharField(max_length=150, default='No link', verbose_name='link do tekstu')
     added_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='songs', blank=True, null=True)
+    likes = models.ManyToManyField(User, related_name='song_likes', blank=True)
 
     class Meta:
         verbose_name = 'piosenka'
         verbose_name_plural = 'piosenki'
+    
+    def number_of_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return 'Piosenka: ' + self.title

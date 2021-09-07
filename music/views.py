@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from music.models import Song, Musician
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from music.forms import SongForm, MusicianForm, SignUpForm
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django import http
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 # Create your views here.
 
@@ -96,3 +96,13 @@ class SongDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(added_by=self.request.user)
+
+
+def song_like(request, pk):
+    song = get_object_or_404(Song, id=request.POST.get('song_id'))
+    if song.likes.filter(id=request.user.id).exists():
+        song.likes.remove(request.user)
+    else:
+        song.likes.add(request.user)
+    
+    return HttpResponseRedirect(reverse('list', args=[str(pk)]))
