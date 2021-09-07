@@ -26,7 +26,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('', views.main_page, name='home'),
     path('admin/', admin.site.urls),
-    path('song_list/', views.songs_list, name='list'),
+    path('song_list/', views.SongList.as_view(), name='list'),
     path('songs/new', views.SongCreate.as_view(), name='song_create'),
     path('musician/new', views.MusicianCreate.as_view(), name='musician_create'),
     path('musician_list/', views.MusicianList.as_view(), name='musician_list'),
@@ -34,4 +34,5 @@ urlpatterns = [
     path('user_songs', views.UserSongList.as_view(), name='user_songs'),
     path('update/<int:pk>', views.SongUpdateView.as_view(), name='song_update'),
     path('delete/<int:pk>', views.SongDeleteView.as_view(), name='song_delete'),
+    path('song_like/<int:pk>', views.song_like, name='song_like'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

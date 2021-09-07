@@ -14,6 +14,12 @@
                         <h6 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h6>
                         <p class="card-text">{{song.short_description}}</p>
                         {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success my-2">Tekst</a> {% endifnotequal %}
+                        <form action="{% url 'song_like' song.pk %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ song.id }}" name="song_id">
+                            <input type="submit" class="btn btn-primary">Like</input>
+                        </form>
+                        {{song.likes.count}}
                     </div>
                 </div>
             </div>

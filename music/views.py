@@ -15,9 +15,10 @@ def main_page(request):
     return render(request, template_name='index.html')
 
 
-def songs_list(request):
-    songs = Song.objects.all()
-    return render(request, template_name='songs_list.html', context={'songs': songs})
+class SongList(ListView):
+    model = Song
+    template_name = 'songs_list.html'
+    context_object_name = 'songs'
 
 
 def profile_view(request):
@@ -105,4 +106,4 @@ def song_like(request, pk):
     else:
         song.likes.add(request.user)
     
-    return HttpResponseRedirect(reverse('list', args=[str(pk)]))
+    return HttpResponseRedirect(reverse('list'))
