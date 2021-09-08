@@ -8,6 +8,7 @@ from music.forms import SongForm, MusicianForm, SignUpForm
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django import http
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -99,6 +100,7 @@ class SongDeleteView(LoginRequiredMixin, DeleteView):
         return super().get_queryset(*args, **kwargs).filter(added_by=self.request.user)
 
 
+@login_required
 def song_like(request, pk):
     song = get_object_or_404(Song, id=request.POST.get('song_id'))
     if song.likes.filter(id=request.user.id).exists():

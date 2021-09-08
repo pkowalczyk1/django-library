@@ -29,6 +29,10 @@
                                     </button>
                                 {% endif %}
                             </form>
+                        {% else %}
+                            <div class="float-end">
+                                <p>Polubienia: {{song.likes.count}}</p>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
