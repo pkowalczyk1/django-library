@@ -13,13 +13,23 @@
                         <h5 class="card-title">{{song.title}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h6>
                         <p class="card-text">{{song.short_description}}</p>
+                    </div>
+                    <div class="card-footer" style="border: none">
                         {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success my-2">Tekst</a> {% endifnotequal %}
-                        <form action="{% url 'song_like' song.pk %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" value="{{ song.id }}" name="song_id">
-                            <input type="submit" class="btn btn-primary">Like</input>
-                        </form>
-                        {{song.likes.count}}
+                        {% if user.is_authenticated %}
+                            <form action="{% url 'song_like' song.pk %}" method="post" class="float-end my-2">
+                                {% csrf_token %}
+                                {% if request.user not in song.likes.all %}
+                                    <button type="submit" name="song_id" value="{{song.id}}" class="btn btn-primary position-relative">Lubię to!
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{song.likes.count}}<span class="visually-hidden">unread messages</span></span>
+                                    </button>
+                                {% else %}
+                                    <button type="submit" name="song_id" value="{{song.id}}" class="btn btn-primary position-relative">Nie lubię
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{song.likes.count}}<span class="visually-hidden">unread messages</span></span>
+                                    </button>
+                                {% endif %}
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
