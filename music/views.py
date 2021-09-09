@@ -101,11 +101,12 @@ class SongDeleteView(LoginRequiredMixin, DeleteView):
 
 
 @login_required
-def song_like(request, pk):
+def song_like(request):
     song = get_object_or_404(Song, id=request.POST.get('song_id'))
+    page = request.POST.get('next', '/')
     if song.likes.filter(id=request.user.id).exists():
         song.likes.remove(request.user)
     else:
         song.likes.add(request.user)
     
-    return HttpResponseRedirect(reverse('list'))
+    return HttpResponseRedirect(page)
