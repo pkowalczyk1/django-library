@@ -15,11 +15,11 @@
                             <h6 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h6>
                             <p class="card-text">{{song.short_description}}</p>
                         </div>
-                        <div class="card-footer d-flex" style="border: none">
+                        <div class="card-footer d-flex align-items-center" style="border: none">
                             <div class="me-auto">
                                 {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success my-2">Tekst</a> {% endifnotequal %}
                             </div>
-                            <div class="align-self-center">
+                            <div>
                                 {% if user.is_authenticated %}
                                     <form action="{% url 'song_like' %}" method="post" class="float-end my-2 like-form" id="{{song.id}}">
                                         {% csrf_token %}
