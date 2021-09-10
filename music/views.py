@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from music.models import Song, Musician
 from django.contrib.auth.forms import UserCreationForm
@@ -103,7 +103,7 @@ class SongDeleteView(LoginRequiredMixin, DeleteView):
 @login_required
 def song_like(request):
     song = get_object_or_404(Song, id=request.POST.get('song_id'))
-    page = request.POST.get('next', '/')
+    page = request.POST.get('path', '/')
     if song.likes.filter(id=request.user.id).exists():
         song.likes.remove(request.user)
     else:
