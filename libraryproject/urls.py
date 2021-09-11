@@ -35,4 +35,5 @@ urlpatterns = [
     path('update/<int:pk>', views.SongUpdateView.as_view(), name='song_update'),
     path('delete/<int:pk>', views.SongDeleteView.as_view(), name='song_delete'),
     path('song_like/', views.song_like, name='song_like'),
+    path('search/', views.search, name='search'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

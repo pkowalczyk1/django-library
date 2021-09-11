@@ -110,3 +110,15 @@ def song_like(request):
         song.likes.add(request.user)
     
     return HttpResponseRedirect(page)
+
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        songs = Song.objects.filter(title__contains=query)
+        musicians = Musician.objects.filter(name__contains=query)
+    else:
+        songs = []
+        musicians = []
+    
+    return render(request, template_name='search_results.html', context={'songs': songs, 'musicians': musicians})
