@@ -115,8 +115,8 @@ def song_like(request):
 def search(request):
     query = request.GET.get('q')
     if query:
-        songs = Song.objects.filter(title__contains=query)
-        musicians = Musician.objects.filter(name__contains=query)
+        songs = Song.objects.filter(title__icontains=query)
+        musicians = Musician.objects.filter(name__icontains=query)
     else:
         songs = []
         musicians = []
