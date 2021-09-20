@@ -29,12 +29,19 @@ class MusicianForm(forms.ModelForm):
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), label='Email')
-    first_name = forms.CharField(max_length=120, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), label='Imię')
-    last_name = forms.CharField(max_length=120, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), label='Nazwisko')
+
+    error_messages = {
+        'password_mismatch': 'Wpisane hasła nie są takie same!',
+    }
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2')
+        error_messages = {
+            'username': {
+                'unique': 'Użytkownik o takiej nazwie już istnieje!',
+            },
+        }
     
 
     def __init__(self, *args, **kwargs):
