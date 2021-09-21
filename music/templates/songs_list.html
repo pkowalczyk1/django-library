@@ -16,8 +16,9 @@
                         <p class="card-text">{{song.short_description|truncatechars:130}}</p>
                     </div>
                     <div class="card-footer d-flex align-items-center" style="border: none">
-                        <div class="me-auto">
+                        <div class="btn-group text-center me-auto" role="group">
                             {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success my-2">Tekst</a> {% endifnotequal %}
+                            <a href="{% url 'song_detail' song.pk %}" class="btn btn-primary my-2">Więcej</a>
                         </div>
                         <div>
                             {% if user.is_authenticated %}

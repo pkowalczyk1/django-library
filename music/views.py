@@ -130,3 +130,9 @@ def search(request):
         musicians = []
     
     return render(request, template_name='search_results.html', context={'songs': songs, 'musicians': musicians})
+
+
+class SongDetailView(DetailView):
+    model = Song
+    context_object_name = 'song'
+    template_name = 'song_detail.html'
