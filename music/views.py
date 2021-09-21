@@ -31,6 +31,14 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
+    def form_invalid(self, form):
+        for field in form.errors:
+            form[field].field.widget.attrs['class'] += ' border border-danger'
+        
+        if 'password2' in form.errors:
+            form['password1'].field.widget.attrs['class'] += ' border border-danger'
+        return super().form_invalid(form)
+
 
 def logout_view(request):
     logout(request)

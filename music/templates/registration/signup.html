@@ -14,7 +14,7 @@
                 {% for field in form.visible_fields %}
                     <div class='mb-3'>
                         <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                        {{ field }}
+                        <div>{{ field }}</div>
                     </div>
                     {% if form.errors %}
                         {% for error in field.errors %}

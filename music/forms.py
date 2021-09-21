@@ -28,6 +28,7 @@ class MusicianForm(forms.ModelForm):
 
 
 class SignUpForm(UserCreationForm):
+    error_css_class = 'error'
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), label='Email')
 
     error_messages = {
