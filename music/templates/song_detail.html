@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section class="text-center container">
-        <br>
-        <div class="row">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">{{song.title}}</h1>
-                <h4 class="lead">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h5>
-                {{song.short_description}}
-            </div>
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">{{song.title}}</h1>
+            <h3 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h3>
+            <p class="col-md-8 fs-4">{{song.short_description}}</p>
+            {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success btn-lg">Tekst</a> {% endifnotequal %}
         </div>
-    </section>
+    </div>
 {% endblock %}
