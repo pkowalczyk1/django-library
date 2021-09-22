@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% include 'song_confirm_delete.html' %}
 
 {% block content %}
     <br>
@@ -19,7 +20,7 @@
                         <div class="btn-group text-center" role="group">
                             {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success my-2">Tekst</a> {% endifnotequal %}
                             <a href="{% url 'song_update' song.pk %}" class="btn btn-primary my-2">Edytuj</a>
-                            <a href="{% url 'song_delete' song.pk %}" class="btn btn-danger my-2">Usuń</a>
+                            <a href="{% url 'song_delete' song.pk %}" class="btn btn-danger my-2" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" id="delete-button">Usuń</a>
                         </div>
                     </div>
                 </div>
@@ -27,4 +28,31 @@
         {% endfor %}
         </div>
     </div>
+
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" caller-id="" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Uwaga!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Czy na pewno chcesz usunąć tę piosenkę? Nie można tego cofnąć.
+                </div>
+                <div class="modal-footer">
+                    <form method="post" id="delete-form" action="">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Potwierdź</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).on('click', '#delete-button', function () {
+            $("#delete-form").attr("action", $(this).attr("href"));
+        });
+    </script>
 {% endblock %}

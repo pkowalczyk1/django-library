@@ -101,7 +101,6 @@ class SongUpdateView(LoginRequiredMixin, UpdateView):
 
 class SongDeleteView(LoginRequiredMixin, DeleteView):
     model = Song
-    template_name = 'song_confirm_delete.html'
     success_url = '/user_songs'
 
     def get_queryset(self, *args, **kwargs):
