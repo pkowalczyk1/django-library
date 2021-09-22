@@ -11,6 +11,7 @@ class Song(models.Model):
     text_link = models.CharField(max_length=150, default='No link', verbose_name='link do tekstu')
     added_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='songs', blank=True, null=True)
     likes = models.ManyToManyField(User, related_name='song_likes', blank=True)
+    youtube_link = models.CharField(max_length=200, verbose_name='link do YouTube', blank=True, null=True, default='No link')
 
     class Meta:
         verbose_name = 'piosenka'

@@ -1,3 +1,4 @@
+import urllib.parse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from music.models import Song, Musician
@@ -53,6 +54,18 @@ class SongCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.added_by = self.request.user
+        query = urllib.parse.urlparse(obj.youtube_link)
+        if query.hostname == 'youtu.be':
+            obj.youtube_link =  query.path[1:]
+        if query.hostname in ('www.youtube.com', 'youtube.com'):
+            if query.path == '/watch':
+                p = urllib.parse.parse_qs(query.query)
+                obj.youtube_link = p['v'][0]
+            if query.path[:7] == '/embed/':
+                obj.youtube_link = query.path.split('/')[2]
+            if query.path[:3] == '/v/':
+                obj.youtube_link = query.path.split('/')[2]
+        
         return super().form_valid(form)
 
 
