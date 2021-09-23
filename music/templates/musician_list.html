@@ -11,7 +11,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">{{ musician.name }}</h5>
-                        <p class="card-text">{{ musician.about|truncatechars:130 }}</p>
+                        <p class="card-text">{{ musician.about }}</p>
                     </div>
                     <div class="card-footer" style="border: none">
                         <a href="{{musician.get_absolute_url}}" class="btn btn-primary my-2">Piosenki wykonawcy</a>

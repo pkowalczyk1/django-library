@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block styling %} <link rel="stylesheet" href="{% static 'iframe_style.css' %}"> {% endblock %}
 
 {% block content %}
-    <div class="p-5 mb-4 bg-light rounded-3">
-        <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">{{song.title}}</h1>
-            <h3 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h3>
-            <p class="col-md-8 fs-4">{{song.short_description}}</p>
-            {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success btn-lg">Tekst</a> {% endifnotequal %}
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-sm-12 col-sm-12">
+                <h1 class="display-5 fw-bold">{{song.title}}</h1>
+                <h3 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h3>
+                <p class="col-md-8 fs-4">{{song.short_description}}</p>
+                {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success btn-lg">Tekst</a> {% endifnotequal %}
+            </div>
+            <div class="col-xl-4 col-lg-4 col-sm-12 col-sm-12 align-self-center">
+                <div class="iframe_container">
+                    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/{{song.youtube_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

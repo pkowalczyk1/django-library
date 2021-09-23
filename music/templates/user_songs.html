@@ -14,13 +14,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{song.title}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h6>
-                        <p class="card-text">{{song.short_description}}</p>
+                        <p class="card-text">{{song.short_description|truncatechars:130}}</p>
                     </div>
                     <div class="card-footer" style="border: none">
                         <div class="btn-group text-center" role="group">
                             {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success my-2">Tekst</a> {% endifnotequal %}
                             <a href="{% url 'song_update' song.pk %}" class="btn btn-primary my-2">Edytuj</a>
                             <a href="{% url 'song_delete' song.pk %}" class="btn btn-danger my-2" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" id="delete-button">Usuń</a>
+                            <a href="{% url 'song_detail' song.pk %}" class="btn btn-primary my-2">Więcej</a>
                         </div>
                     </div>
                 </div>
