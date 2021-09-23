@@ -1,0 +1,34 @@
+<div class="card h-100">
+    <div class="card-body">
+        <h5 class="card-title">{{song.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{% for musician in song.musician.all %} {% if forloop.last %} {{musician.name}} {% else %} {{musician.name}}, {% endif %} {% endfor %}</h6>
+        <p class="card-text">{{song.short_description|truncatechars:130}}</p>
+    </div>
+    <div class="card-footer d-flex align-items-center" style="border: none">
+        <div class="btn-group text-center me-auto" role="group">
+            {% ifnotequal song.text_link 'No link' %} <a href="{{song.text_link}}" target="_blank" class="btn btn-success my-2">Tekst</a> {% endifnotequal %}
+            <a href="{% url 'song_detail' song.pk %}" class="btn btn-primary my-2">Więcej</a>
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+                <form action="{% url 'song_like' %}" method="post" class="float-end my-2 like-form" id="{{song.id}}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{request.path}}">
+                    <input type="hidden" name="song_id" value="{{song.id}}">
+                    <button type="submit" class="btn btn-primary position-relative like-btn{{song.id}}">
+                        {% if request.user not in song.likes.all %}
+                            <i class="fas fa-thumbs-up"></i><span class="like-text{{song.id}}"> Lubię to! </span>
+                        {% else %}
+                            <i class="fas fa-thumbs-down"></i><span class="like-text{{song.id}}"> Nie lubię </span>
+                        {% endif %}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger like-count{{song.id}}">
+                            {{song.likes.count}}
+                        </span>
+                    </button>
+                </form>
+            {% else %}
+                Polubienia: {{song.likes.count}}
+            {% endif %}
+        </div>
+    </div>
+</div>
