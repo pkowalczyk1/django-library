@@ -6,17 +6,25 @@
 {% endblock %}
 
 {% block content %}
-    <br>
-    <div class="text-center">
-        <h1 class="h3 mb-3 fw-normal">Lista piosenek wykonawcy: {{musician.name}}</h1>
-    </div>
-    <div class='container'>
-        <div class='row'>
-            {% for song in songs %}
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
-                    {% include 'components/song_component.html' %}
-                </div>
-            {% endfor %}
+    {% if songs %}
+        <br>
+        <div class="text-center">
+            <h1 class="h3 mb-3 fw-normal">Lista piosenek wykonawcy: {{musician.name}}</h1>
         </div>
-    </div>
+        <div class='container'>
+            <div class='row'>
+                {% for song in songs %}
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                        {% include 'components/song_component.html' %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <br>
+        <div class="text-center">
+            <h1 class="h3 mb-3 fw-normal">Wykonawca {{musician.name}} nie ma piosenek w bazie</h1>
+            <a href="{% url 'song_create' %}" class="btn btn-success my-2">Dodaj piosenkę</a>
+        </div>
+    {% endif %}
 {% endblock %}
